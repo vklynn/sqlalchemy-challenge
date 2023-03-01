@@ -45,7 +45,6 @@ def welcome():
         f"Precipitation: /api/v1.0/precipitation<br/>"
         f"List of Stations: /api/v1.0/stations<br/>"
         f"Temperature for one year: /api/v1.0/tobs<br/>"
-        f"Temperature stat from the start date(mm-dd-yyyy): /api/v1.0/mm-dd-yyyy<br/>"
         f"Temperature stat from start to end dates(mm-dd-yyyy): /api/v1.0/mm-dd-yyyy/mm-dd-yyyy"
     )
 
@@ -122,9 +121,9 @@ def stats(start=None, end=None):
         session.close()
 
         temps = list(np.ravel(results))
-        return jsonify({"Min temp":temps[0],
-        "Avg temp": temps[1],
-        "Max temp": temps[2]})
+        return jsonify({"Minimum tempature:":temps[0],
+        "Average temerature:": temps[1],
+        "Maximum temperature": temps[2]})
 
     # calculate TMIN, TAVG, TMAX with start and stop
     if end:
@@ -145,9 +144,9 @@ def stats(start=None, end=None):
 
     # Unravel results into a 1D array and convert to a list
     temps = list(np.ravel(results))
-    return jsonify({"Min temp":temps[0],
-        "Avg temp": temps[1],
-        "Max temp": temps[2]})
+    return jsonify({"Minimum temp":temps[0],
+        "Average temp": temps[1],
+        "Maximum temp": temps[2]})
 
 
 if __name__ == '__main__':

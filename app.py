@@ -63,7 +63,7 @@ def precipitation():
     # Dict with date as the key and prcp as the value
     for date, prcp in precipitation:
         year_prcp = {precip.date: precip.prcp for precip in precipitation}
-    return jsonify(year_prcp)
+    return jsonify(precipitation)
 
 
 @app.route("/api/v1.0/stations")
@@ -121,9 +121,7 @@ def stats(start=None, end=None):
         session.close()
 
         temps = list(np.ravel(results))
-        return jsonify({"Minimum tempature:":temps[0],
-        "Average temerature:": temps[1],
-        "Maximum temperature": temps[2]})
+        return jsonify(temps)
 
     # calculate TMIN, TAVG, TMAX with start and stop
     if end:
@@ -144,9 +142,7 @@ def stats(start=None, end=None):
 
     # Unravel results into a 1D array and convert to a list
     temps = list(np.ravel(results))
-    return jsonify({"Minimum temp":temps[0],
-        "Average temp": temps[1],
-        "Maximum temp": temps[2]})
+    return jsonify(temps)
 
 
 if __name__ == '__main__':
